@@ -1,13 +1,24 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
+// 通用路由
+export const commonRoutes = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login'),
+    meta: { title: '登录页'},
+    hidden: true
+  }
+]
 
-
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-})
+const createRouter = () => {
+  return new Router({
+    routes: commonRoutes,
+    mode: 'history'
+  })
+}
+const router = createRouter();
 
 export default router
