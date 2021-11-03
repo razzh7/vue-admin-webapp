@@ -1,30 +1,31 @@
-// const files = require.context('./modules', false, /\.js$/);
-// console.dir(files);
-
-// files.keys().forEach(key => {
-//   // if(key === './index.js') return;
-//   // console.log(files(key).default)
-//   // console.log(8,files(key))
-//   // configRouters = configRouters.concat(files(key).default)
-// })
-// // console.log(configRouters)
-// // console.log(11,files.keys())
-// const obj = files(files.keys()[1]);
-// console.log(12,obj)
-// // console.log(13,files.keys()[1])
-// const cache = {};
-const path = require('path')
-const files = require.context('./modules', false, /\.js$/)
+import Vue from "vue";
+import Vuex from "vuex";
+Vue.use(Vuex);
+const path = require('path');
+/**
+ * require.context: 检索指定文件夹下的所有文件
+ * params1 要检索的目录
+ * params2 是否递归目录中的子文件夹
+ * params3 检索文件的条件，搜索以什么后缀结尾的文件
+ * 返回值： 返回一个函数
+ * 函数下的属性方法：
+ * keys(params1) 返回一个以检索文件相对该文件夹的相对路径
+ * params1: 传入相对路径返回检索文件的导出模块
+ * files.keys(files.keys()[index])
+ */
+const files = require.context('./modules', false, /\.js$/);
 let modules = {};
-// function importAll(r) {
-//   r.keys().forEach((key) => (cache[key] = r(key)));
-// }
 
-// importAll(require.context('./modules', false, /\.js$/));
 files.keys().forEach(key => {
-  let name = path.basename(key, '.js')
+  let name = path.basename(key, '.js') // 去掉.js只拿路径 例: user.js -> user
   modules[name] = files(key).default || files(key)
 })
-console.log(28,files(files.keys()[0]))
-console.log(29,files(files.keys()[0]).default)
+// console.log(18,files.keys())
+// console.log(28,files(files.keys()[0]))
+// console.log(29,files(files.keys()[0]).default)
 console.log(modules)
+const store = new Vuex.Store({
+  modules
+})
+
+export default store;
