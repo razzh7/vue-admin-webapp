@@ -17,11 +17,8 @@ const actions = {
         return new Promise((resolve, reject) => {
             login(formDatas)
             .then(res => {
-                console.log(0,res)
                 if(res.code === 0) {
-                    console.log(0,'k1')
                     if(res.data.success){
-                        console.log(1,'k2')
                         Message.success(res.data.user.msg);
                         commit('SET_TOKEN',res.data.user.token);
                     }
