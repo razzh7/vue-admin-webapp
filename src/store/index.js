@@ -20,9 +20,6 @@ files.keys().forEach(key => {
   let name = path.basename(key, '.js') // 去掉.js只拿路径 例: user.js -> user
   modules[name] = files(key).default || files(key)
 })
-// console.log(18,files.keys())
-// console.log(28,files(files.keys()[0]))
-// console.log(29,files(files.keys()[0]).default)
 console.log(modules)
 const store = new Vuex.Store({
   modules
