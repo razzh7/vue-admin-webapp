@@ -8,10 +8,10 @@
         :model="loginInfo"
         :rules="rules"
       >
-        <el-form-item label="账号" prop="username">
+        <el-form-item label="账号" prop="user">
           <el-input
             prefix-icon="el-icon-s-custom"
-            v-model="loginInfo.username"
+            v-model="loginInfo.user"
           ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
@@ -22,7 +22,7 @@
           ></el-input>
         </el-form-item>
         <div class="item-button">
-          <el-button type="primary" @click="goLogin">登录</el-button>
+          <el-button type="primary" @click="Login">登录</el-button>
           <el-button type="info" @click="reset">重置</el-button>
         </div>
       </el-form>
@@ -36,11 +36,11 @@ export default {
   data() {
     return {
       loginInfo: { // 用户名和密码
-        userName: '',
+        user: '',
         password: ''
       },
       rules: { // 表单验证
-        username: [
+        user: [
             {require: true, message: '请输入账号', trigger: 'blur'},
             {min: 3, max: 8, message: '账号长度在3到8个字符', trigger: 'blur'}
         ],
@@ -53,8 +53,13 @@ export default {
     }
   },
   methods: {
-    goLogin() {
-
+    Login() {
+      console.log(this.$store)
+      this.$store.dispatch('user/_login',this.loginInfo).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
     },
     reset() {
 

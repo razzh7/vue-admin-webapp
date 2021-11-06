@@ -24,5 +24,6 @@ console.log(modules)
 const store = new Vuex.Store({
   modules
 })
+console.log('store',store)
 
 export default store;

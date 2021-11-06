@@ -1,3 +1,4 @@
 const getters = {
-    token
+    token: state => { console.log(state)
+         return 1}
 }
