@@ -1,0 +1,19 @@
+#app {
+
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sideBarWidth;
+    min-height: 100%;
+    background-color: peru;
+  }
+
+  .main-container {
+    position: relative;
+    margin-left: $sideBarWidth;
+    min-height: 100%;
+    background-color: pink;
+  }
+}

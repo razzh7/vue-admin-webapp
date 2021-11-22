@@ -19,6 +19,7 @@
             prefix-icon="el-icon-lock"
             type="password"
             v-model="loginInfo.password"
+            @keyup.enter.native="Login"
           ></el-input>
         </el-form-item>
         <div class="item-button">
@@ -56,7 +57,7 @@ export default {
     Login() {
       console.log(this.$store)
       this.$store.dispatch('user/_login',this.loginInfo).then(res => {
-        console.log(res)
+        this.$router.push({ path: '/' })
       }).catch(err => {
         console.log(err)
       })

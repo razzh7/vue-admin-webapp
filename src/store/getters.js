@@ -1,4 +1,6 @@
 const getters = {
-    token: state => { console.log(state)
-         return 1}
+    token: state => state.user.token,
+    avatar: state => state.user.avatar
 }
+
+export default getters;

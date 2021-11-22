@@ -1,14 +1,18 @@
-import { login } from "@/api/login";
-import { Message } from "element-ui";
+import { login } from "@/api/login"
+import { Message } from "element-ui"
 const state = {
     token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
-    userInfo: ''
+    userInfo: '',
+    avatar: ''
 }
 
 const mutations = {
-    SET_TOKEN(state,token) {
-        state.token = token;
-        localStorage.setItem('token',token);
+    SET_TOKEN(state, token) {
+        state.token = token
+        localStorage.setItem('token',token)
+    },
+    SET_AVATAR(state, avatar) {
+        state.avatar = avatar
     }
 }
 
@@ -18,18 +22,19 @@ const actions = {
             login(formDatas)
             .then(res => {
                 if(res.code === 0) {
-                    if(res.data.success){
-                        Message.success(res.data.user.msg);
-                        commit('SET_TOKEN',res.data.user.token);
-                    }
-                    resolve(res);
+                    console.log('用户数据',res)
+                    const { data } = res;
+                    Message.success(data.user.msg)
+                    commit('SET_TOKEN', data.user.token)
+                    commit('SET_AVATAR',data.user.avatar)
+                    resolve(res)
                 } else {
                     reject(res)
                 }
             })
             .catch(err => {
-                console.log(err);
-                reject(err);
+                console.log(err)
+                reject(err)
             })
         })
     }
