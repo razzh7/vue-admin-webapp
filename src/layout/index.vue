@@ -1,5 +1,5 @@
 <template>
-  <div class="app-wrapper">
+  <div class="app-wrapper" :class="classObj">
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <navbar />
@@ -10,13 +10,23 @@
 
 <script>
 import { Navbar, Sidebar, PageMain } from "./components"
+import { mapGetters } from "vuex"
 export default {
   name: 'Layout',
   components: {
     Navbar,
     Sidebar,
     PageMain
+  },
+  computed: {
+    ...mapGetters(['sidebar']),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened
+      }
+    }
   }
+
 }
 </script>
 

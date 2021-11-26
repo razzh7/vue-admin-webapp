@@ -1,10 +1,24 @@
 <template>
-  <div class="navbar">i am navbar</div>
+  <div class="navbar">
+    <hamburger @toggleClick="toggleClick" :is-active="sidebar.open"/>
+  </div>
 </template>
 
 <script>
+import Hamburger from "@/components/Hamburger"
+import { mapGetters } from "vuex"
 export default {
-
+  components: {
+    Hamburger
+  },
+  computed: {
+    ...mapGetters(['sidebar'])
+  },
+  methods: {
+    toggleClick() {
+      this.$store.dispatch('app/toggleSideBar');
+    }
+  }
 }
 </script>
 

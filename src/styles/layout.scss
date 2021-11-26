@@ -1,19 +1,56 @@
 #app {
 
-  .sidebar-container {
+  .sidebar-container { // 菜单栏
+    transition: width .28s;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     width: $sideBarWidth;
     min-height: 100%;
-    background-color: peru;
+    // background-color: peru;
+    // reset elementUi style
+    .el-menu {
+      width: 100%;
+      border: none;
+    }
+    // .el-submenu__title {
+    //   padding: 0 !important;
+    // }
+    // .el-tooltip {
+    //   padding:  0 !important;
+    // }
   }
 
-  .main-container {
+  .main-container {  // 内容主体
+    transition: margin-left .28s;
     position: relative;
     margin-left: $sideBarWidth;
     min-height: 100%;
     background-color: pink;
+  }
+
+  .hideSidebar {   // 收缩sidebar
+    .sidebar-container {
+      width: 54px !important;
+    }
+    .main-container {
+      margin-left: 54px !important;
+    }
+  }
+
+  .mobile {
+    .main-container {
+      margin-left: 0;
+    }
+    .sidebar-container {
+      transition: width .28s;
+      width: $sideBarWidth;
+    }
+    .hideSidebar {
+      &.sidebar-container {
+        transform: translate3d(-$sideBarWidth, 0, 0);
+      }
+    }
   }
 }
