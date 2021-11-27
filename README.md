@@ -56,3 +56,8 @@ action:
   + 有权限 -> 放行
   + 无权限 -> 请求用户权限信息 -> 动态添加路由
 + 若本地不存在`token`跳转登陆页
+
+## 移动端适配思路
+
+![avatar](https://github.com/rzhAvenir/vue-admin-webapp/blob/dev/img/mobile.png)
+
