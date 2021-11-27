@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <hamburger @toggleClick="toggleClick" :is-active="sidebar.open"/>
+    <hamburger @toggleClick="toggleClick" :is-active="sidebar.opened"/>
   </div>
 </template>
 

@@ -6,9 +6,10 @@
     top: 0;
     left: 0;
     bottom: 0;
+    z-index: 999; // 优先级高于移动环境下的遮罩层
     width: $sideBarWidth;
     min-height: 100%;
-    // background-color: peru;
+    background-color: peru;
     // reset elementUi style
     .el-menu {
       width: 100%;
@@ -32,23 +33,25 @@
 
   .hideSidebar {   // 收缩sidebar
     .sidebar-container {
+      // 这里的!importan解决mobile端切换到desktop端过程中的从210px到54px
       width: 54px !important;
     }
     .main-container {
-      margin-left: 54px !important;
+      margin-left: 54px;
     }
   }
-
+ // 移动自适应
   .mobile {
     .main-container {
       margin-left: 0;
     }
     .sidebar-container {
-      transition: width .28s;
+      transition: transform .28s;
       width: $sideBarWidth;
     }
-    .hideSidebar {
-      &.sidebar-container {
+    &.hideSidebar { // &指的是父级类.mobile
+      .sidebar-container {
+        pointer-events: none; // 禁用鼠标事件
         transform: translate3d(-$sideBarWidth, 0, 0);
       }
     }

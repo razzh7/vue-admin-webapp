@@ -1,7 +1,8 @@
 const state = {
   sidebar: {
     opened: localStorage.getItem('opened') ? !!+localStorage.getItem('opened') : true // !!转化数字为布尔值(首次没有local值使用true意思更加符合open的意思)
-  }
+  },
+  device: 'desktop'
 }
 
 const mutations = {
@@ -13,12 +14,24 @@ const mutations = {
     } else {
       localStorage.setItem('opened', 0)
     }
+  },
+  COLSE_SIDEBAR(state) {
+    state.sidebar.opened = false
+  },
+  TOGGLE_DEVICE(state, device) {
+    state.device = device
   }
 }
 
 const actions = {
   toggleSideBar({ commit }) {
     commit('TOGGLE_SIDEBAR')
+  },
+  closeSidebar({ commit }) {
+    commit('COLSE_SIDEBAR')
+  },
+  toggleDevice({ commit }, device) {
+    commit('TOGGLE_DEVICE',device)
   }
 }
 

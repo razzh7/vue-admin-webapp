@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from "vuex"
 export default {
   data() {
     return {};
@@ -53,15 +53,15 @@ export default {
   computed: {
     ...mapGetters(['sidebar']),
     isCollapse() {
-      return !this.sidebar.opened;
+      return !this.sidebar.opened
     },
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     },
   },
 };

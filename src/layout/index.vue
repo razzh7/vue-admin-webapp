@@ -1,5 +1,6 @@
 <template>
   <div class="app-wrapper" :class="classObj">
+    <div :class="{ 'drawer-bg': sidebar.opened && classObj.mobile }" @click="closeSidebar"></div>
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <navbar />
@@ -11,6 +12,8 @@
 <script>
 import { Navbar, Sidebar, PageMain } from "./components"
 import { mapGetters } from "vuex"
+import ResizeMixins from "./mixin/ResizeHandler"
+
 export default {
   name: 'Layout',
   components: {
@@ -18,12 +21,20 @@ export default {
     Sidebar,
     PageMain
   },
+  mixins: [ResizeMixins],
   computed: {
-    ...mapGetters(['sidebar']),
+    ...mapGetters(['sidebar', 'device']),
     classObj() {
       return {
-        hideSidebar: !this.sidebar.opened
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+        mobile: this.device === 'mobile' ? true : false
       }
+    }
+  },
+  methods: {
+    closeSidebar() {
+      this.$store.dispatch('app/closeSidebar')
     }
   }
 
@@ -34,5 +45,14 @@ export default {
 .app-wrapper {
   width: 100%;
   height: 100%;
+}
+.drawer-bg {
+  background-color: #000;
+  opacity: .3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 998;
 }
 </style>
