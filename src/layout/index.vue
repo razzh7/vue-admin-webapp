@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     toggleSidebar() {
-      this.$store.dispatch('app/closeSidebar', { withoutAnimation: false })
+      this.$store.dispatch('app/closeSidebar', { withoutAnimation: false }) // 移动端切换菜单栏时，开启动画
     }
   }
 

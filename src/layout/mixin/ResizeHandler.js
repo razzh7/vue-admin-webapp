@@ -12,7 +12,7 @@ export default {
   mounted() {
     if(this.$_isMobile()) {
       store.dispatch('app/toggleDevice','mobile')
-      store.dispatch('app/closeSidebar', { withoutAnimation: true })
+      store.dispatch('app/closeSidebar', { withoutAnimation: true }) // 移动端进入后台关闭菜单栏和主体内容区域的动画切换
     }
   },
   methods: {
@@ -26,7 +26,7 @@ export default {
       store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
 
       if(isMobile) {
-        store.dispatch('app/closeSidebar', { withoutAnimation: true })
+        store.dispatch('app/closeSidebar', { withoutAnimation: true }) // 移动端切换菜单栏时，开启动画
       }
     }
   }

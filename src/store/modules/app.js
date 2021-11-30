@@ -18,8 +18,8 @@ const mutations = {
     }
   },
   COLSE_SIDEBAR(state, { withoutAnimation }) {
-    state.sidebar.opened = false
-    state.sidebar.withoutAnimation = withoutAnimation
+    state.sidebar.opened = false // 控制菜单栏切换
+    state.sidebar.withoutAnimation = withoutAnimation // 菜单栏和内容主体的动画控制（不加会导致移动端进入时产生菜单栏收缩的动画）
   },
   TOGGLE_DEVICE(state, device) {
     state.device = device
@@ -34,7 +34,7 @@ const actions = {
     commit('COLSE_SIDEBAR', playload)
   },
   toggleDevice({ commit }, device) {
-    commit('TOGGLE_DEVICE',device)
+    commit('TOGGLE_DEVICE', device)
   }
 }
 
