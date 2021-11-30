@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper" :class="classObj">
-    <div :class="{ 'drawer-bg': sidebar.opened && classObj.mobile }" @click="closeSidebar"></div>
+    <div :class="{ 'drawer-bg': sidebar.opened && classObj.mobile }" @click="toggleSidebar"></div>
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <navbar />
@@ -28,13 +28,14 @@ export default {
       return {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
-        mobile: this.device === 'mobile' ? true : false
+        mobile: this.device === 'mobile' ? true : false,
+        withoutAnimation: this.sidebar.withoutAnimation
       }
     }
   },
   methods: {
-    closeSidebar() {
-      this.$store.dispatch('app/closeSidebar')
+    toggleSidebar() {
+      this.$store.dispatch('app/closeSidebar', { withoutAnimation: false })
     }
   }
 

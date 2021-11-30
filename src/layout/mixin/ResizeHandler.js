@@ -10,9 +10,9 @@ export default {
     window.removeEventListener('resize', this.$_resizeHandler)
   },
   mounted() {
-    if(this.$_isMobile) {
-      store.dispatch('app/closeSidebar')
+    if(this.$_isMobile()) {
       store.dispatch('app/toggleDevice','mobile')
+      store.dispatch('app/closeSidebar', { withoutAnimation: true })
     }
   },
   methods: {
@@ -26,7 +26,7 @@ export default {
       store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
 
       if(isMobile) {
-        store.dispatch('app/closeSidebar')
+        store.dispatch('app/closeSidebar', { withoutAnimation: true })
       }
     }
   }

@@ -56,4 +56,10 @@
       }
     }
   }
+  .withoutAnimation {
+    .sidebar-container, 
+    .main-container {
+      transition: none;
+    }
+  }
 }

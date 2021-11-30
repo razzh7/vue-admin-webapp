@@ -1,5 +1,7 @@
 <template>
-  <div class="page-main">i am pageMain</div>
+  <div class="page-main">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

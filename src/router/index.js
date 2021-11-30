@@ -14,8 +14,17 @@ export const commonRoutes = [
   },
   {
     path: '/',
-    name: 'Layout',
-    component: Layout
+    name: 'Home',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/dashboard'),
+        meta: { title: '首页' }
+      }
+    ]
   }
 ]
 
