@@ -9,7 +9,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item />
+        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -28,6 +28,9 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     },
+    routes() { // 获取路由表
+      return this.$router.options.routes
+    }
   },
   methods: {
     handleOpen(key, keyPath) {
