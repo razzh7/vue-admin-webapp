@@ -9,7 +9,7 @@
     z-index: 999; // 优先级高于移动环境下的遮罩层
     width: $sideBarWidth;
     min-height: 100%;
-    background-color: peru;
+    background-color: #304156;
     // reset elementUi style
     .el-menu {
       width: 100%;
@@ -28,7 +28,7 @@
     position: relative;
     margin-left: $sideBarWidth;
     min-height: 100%;
-    background-color: pink;
+    // background-color: pink;
   }
 
   .hideSidebar {   // 收缩sidebar
@@ -47,19 +47,37 @@
     }
     .sidebar-container {
       transition: transform .28s;
-      width: $sideBarWidth;
+      width: $sideBarWidth !important;
     }
     &.hideSidebar { // &指的是父级类.mobile
       .sidebar-container {
         pointer-events: none; // 禁用鼠标事件
+        transition-duration: 0.3s;
         transform: translate3d(-$sideBarWidth, 0, 0);
       }
     }
   }
+
   .withoutAnimation {
     .sidebar-container, 
     .main-container {
       transition: none;
     }
+  }
+
+  /* 路由过渡 */
+  .fade-transform-leave-active,
+  .fade-transform-enter-active {
+    transition: all .5s;
+  }
+
+  .fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
   }
 }

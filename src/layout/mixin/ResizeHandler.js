@@ -3,6 +3,13 @@ import store from "@/store"
 const WIDTH = 992
 const { body } = document
 export default {
+  watch: {
+    $route() {
+      if (this.device === 'mobile' && this.sidebar.opened) {
+        store.dispatch('app/closeSidebar', { withoutAnimation: false }) // 移动端切换菜单，关闭侧边栏
+      }
+    }
+  },
   beforeMount() {
     window.addEventListener('resize', this.$_resizeHandler)
   },
@@ -10,6 +17,7 @@ export default {
     window.removeEventListener('resize', this.$_resizeHandler)
   },
   mounted() {
+    console.log('route', this.$route)
     if(this.$_isMobile()) {
       store.dispatch('app/toggleDevice','mobile')
       store.dispatch('app/closeSidebar', { withoutAnimation: true }) // 移动端进入后台关闭菜单栏和主体内容区域的动画切换

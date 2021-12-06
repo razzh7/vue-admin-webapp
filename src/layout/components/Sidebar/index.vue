@@ -2,9 +2,11 @@
   <div>
     <el-scrollbar class="scrollbar-wrapper">
       <el-menu
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
+        :default-active="this.$route.path"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :active-text-color="variables.menuActiveText"
+        :unique-opened="false"
         :collapse="isCollapse"
         :collapse-transition="false"
         mode="vertical"
@@ -18,10 +20,9 @@
 <script>
 import { mapGetters } from "vuex"
 import SidebarItem from "./SidebarItem"
+import variables from "@/styles/variables.scss"
+
 export default {
-  data() {
-    return {};
-  },
   components: { SidebarItem },
   computed: {
     ...mapGetters(['sidebar']),
@@ -30,16 +31,11 @@ export default {
     },
     routes() { // 获取路由表
       return this.$router.options.routes
+    },
+    variables() {
+      return variables
     }
-  },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath)
-    },
-  },
+  }
 };
 </script>
 

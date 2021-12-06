@@ -22,7 +22,7 @@ export const commonRoutes = [
         path: 'dashboard',
         name: 'dashboard',
         component: () => import('@/views/dashboard'),
-        meta: { title: '首页' }
+        meta: { title: '首页', icon: 'el-icon-s-home' }
       }
     ]
   },
@@ -34,19 +34,41 @@ export const commonRoutes = [
         path: 'index',
         name: 'Test',
         component: () => import('@/views/routertest'),
-        meta: { title: '测试1'}
+        meta: { title: '测试1', icon: 'el-icon-s-promotion'}
       }
     ]
   },
   {
-    path: '/test2',
+    path: '/nested',
     component: Layout,
+    redirect: '/nested/menu1',
+    meta: { title: '多级菜单测试', icon: 'el-icon-s-claim' },
     children: [
       {
-        path: 't2',
-        name: 'Test',
-        component: () => import('@/views/test2'),
-        meta: { title: '测试2'}
+        path: 'menu1',
+        name: 'Menu1',
+        component: () => import('@/views/nested/menu1'),
+        meta: { title: 'Menu1', icon: 'el-icon-s-marketing' },
+        children: [
+          {
+            path: 'menu1-1',
+            name: 'Menu1-1',
+            component: () => import('@/views/nested/menu1/menu1-1'),
+            meta: { title: 'Menu1-1', icon: 'el-icon-s-flag' }          
+          },
+          {
+            path: 'menu1-2',
+            name: 'Menu1-2',
+            component: () => import('@/views/nested/menu1/menu1-2'),
+            meta: { title: 'Menu1-2', icon: 'el-icon-s-order' }           
+          }
+        ]
+      },
+      {
+        path: 'menu2',
+        name: 'Menu2',
+        component: () => import('@/views/nested/menu2'),
+        meta: { title: 'Menu2', icon: 'el-icon-s-ticket' }
       }
     ]
   },
@@ -56,7 +78,7 @@ export const commonRoutes = [
     children: [
       {
         path: 'https://github.com/rzhAvenir',
-        meta: { title: 'Github' }
+        meta: { title: 'Github', icon: 'el-icon-info' }
       }
     ]
   }

@@ -10,7 +10,8 @@ import {
   MenuItemGroup,
   RadioGroup,
   RadioButton,
-  Scrollbar
+  Scrollbar,
+  Alert
 } from "element-ui";
 
 Vue.use(Form);
@@ -24,3 +25,4 @@ Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(MenuItemGroup);
 Vue.use(Scrollbar);
+Vue.use(Alert);

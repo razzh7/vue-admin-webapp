@@ -1,15 +1,27 @@
 <template>
   <div class="sidebar-item">
-    <template v-if="isOnlyChild(item.children, item) && !item.hidden">
+    <template v-if="isOnlyChild(item.children, item) && !onlyOneChild.children">
       <!-- page-link的作用在于区分外链和内部path -->
       <!-- 详见路由文件中的Github -->
-      <page-link :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item>{{ onlyOneChild.meta.title }}</el-menu-item>
+      <page-link v-if="!onlyOneChild.hidden" :to="resolvePath(onlyOneChild.path)">
+        <el-menu-item :index="resolvePath(onlyOneChild.path)">
+          <i :class="onlyOneChild.meta.icon"></i>
+          <span>{{ onlyOneChild.meta.title }}</span>
+        </el-menu-item>
       </page-link>
-      <!-- <router-link :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item>{{ onlyOneChild.meta.title }}</el-menu-item>
-      </router-link> -->
     </template>
+    <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
+      <template slot="title" v-if="item.meta && !item.hidden">
+        <i :class="item.meta.icon"></i>
+        <span>{{ item.meta.title }}</span>
+      </template>
+      <sidebar-item
+      v-for="child in item.children"
+      :key="child.path"
+      :base-path="resolvePath(child.path)"
+      :item="child"
+      />
+    </el-submenu>
   </div>
 </template>
 
@@ -46,21 +58,25 @@ export default {
        })
 
        if (showChildren.length === 1) {
+         // 拿到唯一child渲染
          this.onlyOneChild = showChildren[0]
          return true
        }
        if (showChildren.length === 0) { // 说明只有路由只有一层
-          this.onlyOneChild = { ...parent }
+       // path目的是用来清理children的item的path，else url上会多出现一个item path
+          this.onlyOneChild = { ...parent, path: '' } 
           return true
        }
         return false
      },
      resolvePath(routePath) {
        if (isExternal(routePath)) {
-         console.log(77,routePath)
          return routePath
        }
-
+       
+      if (isExternal(this.basePath)) {
+        return this.basePath
+      }
        return path.resolve(this.basePath, routePath)
      }
    }
