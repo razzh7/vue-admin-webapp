@@ -3,7 +3,8 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 import Layout from '@/layout'
-// 通用路由
+
+/* 通用路由 */
 export const commonRoutes = [
   {
     path: '/login',
@@ -20,7 +21,7 @@ export const commonRoutes = [
     children: [
       {
         path: 'dashboard',
-        name: 'dashboard',
+        name: 'Dashboard',
         component: () => import('@/views/dashboard'),
         meta: { title: '首页', icon: 'el-icon-s-home' }
       }
@@ -34,7 +35,7 @@ export const commonRoutes = [
         path: 'index',
         name: 'Test',
         component: () => import('@/views/routertest'),
-        meta: { title: '测试1', icon: 'el-icon-s-promotion'}
+        meta: { title: '测试1', icon: 'el-icon-s-promotion' }
       }
     ]
   },
@@ -73,7 +74,7 @@ export const commonRoutes = [
     ]
   },
   {
-    path: 'Github', // path中不加/相当于父组件路径/https://github.com/rzhAvenir
+    path: '/github', // path中不加/相当于父组件路径/https://github.com/rzhAvenir
     component: Layout,
     children: [
       {
@@ -86,8 +87,7 @@ export const commonRoutes = [
 
 const createRouter = () => {
   return new Router({
-    routes: commonRoutes,
-    mode: 'history'
+    routes: commonRoutes
   })
 }
 const router = createRouter();

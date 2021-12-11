@@ -3,10 +3,10 @@ import Vue from "vue";
 import Qs from "qs";
 import store from "@/store"
 import { Loading } from "element-ui";
-console.log(process.env.VUE_APP_BASE_API)
+
 const $axios = new axios.create({
-    baseURL: 'https://www.fastmock.site/mock/a8b182f11949e3c820bcc6a644992e4e/razzh',
-    timeout: 5000
+    baseURL: process.env.VUE_APP_BASE_API,
+    timeout: 30000
 })
 Vue.prototype.$http = axios; // 并发请求
 let loading = null; // 在全局请求和拦截中添加请求状态

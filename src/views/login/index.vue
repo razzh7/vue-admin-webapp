@@ -55,19 +55,14 @@ export default {
   },
   methods: {
     Login() {
-      console.log(this.$store)
       this.$store.dispatch('user/_login',this.loginInfo).then(res => {
-        this.$router.push({ path: '/' })
+        if (res.code === 0 ) {
+          this.$router.push({ path:this.$route.query.redirect }).catch((e) => e)
+        }
       }).catch(err => {
         console.log(err)
       })
-    },
-    reset() {
-
     }
-  },
-  rules: {
-
   }
 }
 </script>
@@ -90,7 +85,7 @@ export default {
     display: inline-block;
     width: 150px;
     height: 150px;
-    background: url("https://portrait.gitee.com/uploads/avatars/user/2172/6517203_razzh_1606442093.png!avatar200") no-repeat;
+    background: url("https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png") no-repeat;
     background-size: 100% 100%;
     position: relative;
     left: 50%;

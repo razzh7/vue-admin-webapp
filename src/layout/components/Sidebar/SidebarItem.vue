@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar-item">
-    <template v-if="isOnlyChild(item.children, item) && !onlyOneChild.children">
+    <template v-if="isOnlyChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowChildren)">
       <!-- page-link的作用在于区分外链和内部path -->
       <!-- 详见路由文件中的Github -->
-      <page-link v-if="!onlyOneChild.hidden" :to="resolvePath(onlyOneChild.path)">
+      <page-link v-if="!onlyOneChild.hidden && onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
           <i :class="onlyOneChild.meta.icon"></i>
           <span>{{ onlyOneChild.meta.title }}</span>
@@ -64,7 +64,8 @@ export default {
        }
        if (showChildren.length === 0) { // 说明只有路由只有一层
        // path目的是用来清理children的item的path，else url上会多出现一个item path
-          this.onlyOneChild = { ...parent, path: '' } 
+          console.log(111)
+          this.onlyOneChild = { ...parent, path: '', noShowChildren: true } 
           return true
        }
         return false

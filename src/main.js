@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/element.js';
 import '@/styles/index.scss'; // global css
 import "@/store/index.js";
+import "./permission"
 Vue.config.productionTip = false
 
 new Vue({
@@ -12,3 +13,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+console.log('我是环境变了',process.env.VUE_APP_BASE_API)

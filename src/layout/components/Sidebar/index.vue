@@ -11,7 +11,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -25,13 +25,13 @@ import variables from "@/styles/variables.scss"
 export default {
   components: { SidebarItem },
   computed: {
-    ...mapGetters(['sidebar']),
+    ...mapGetters(['sidebar', 'permission_routes']),
     isCollapse() {
       return !this.sidebar.opened
     },
-    routes() { // 获取路由表
-      return this.$router.options.routes
-    },
+    // routes() { // 获取路由表
+    //    return this.$router.options.routes // Vue router首次初始化添加的routes信息，addRoute的路由信息不回添加到这里
+    // },
     variables() {
       return variables
     }
