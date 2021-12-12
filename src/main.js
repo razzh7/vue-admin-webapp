@@ -13,4 +13,4 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-console.log('我是环境变了',process.env.VUE_APP_BASE_API)
+console.log(router)

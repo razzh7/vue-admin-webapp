@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+// import { asyncRoutes } from "./modules/routes" // 动态路由必须导入
 Vue.use(Router)
 import Layout from '@/layout'
 
@@ -84,12 +84,33 @@ export const commonRoutes = [
     ]
   }
 ]
+export const asyncRoutes = [
+  {
+    path: '/table',
+    component: Layout,
+    children: [
+      {
+        path: 'ratable',
+        name: 'Table',
+        component: () => import('@/views/table'),
+        meta: { title: '表格', icon: 'el-icon-s-grid', roles: ['admin'] }
+      }
+    ]
+  },
+]
 
 const createRouter = () => {
   return new Router({
     routes: commonRoutes
   })
 }
-const router = createRouter();
+const router = createRouter()
+
+// fix:用户切换菜单栏不变的问题： https://github.com/vuejs/vue-router/issues/1234
+export function resetRouter() {
+  console.log('执行了吗')
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // the relevant part
+}
 
 export default router

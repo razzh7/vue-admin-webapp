@@ -6,14 +6,14 @@
       <page-link v-if="!onlyOneChild.hidden && onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
           <i :class="onlyOneChild.meta.icon"></i>
-          <span>{{ onlyOneChild.meta.title }}</span>
+          <span class="menu-title">{{ onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </page-link>
     </template>
     <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title" v-if="item.meta && !item.hidden">
         <i :class="item.meta.icon"></i>
-        <span>{{ item.meta.title }}</span>
+        <span class="menu-title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item
       v-for="child in item.children"
@@ -64,7 +64,6 @@ export default {
        }
        if (showChildren.length === 0) { // 说明只有路由只有一层
        // path目的是用来清理children的item的path，else url上会多出现一个item path
-          console.log(111)
           this.onlyOneChild = { ...parent, path: '', noShowChildren: true } 
           return true
        }

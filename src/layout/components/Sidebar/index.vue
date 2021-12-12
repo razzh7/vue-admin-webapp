@@ -39,8 +39,12 @@ export default {
 };
 </script>
 
-<style>
-.scrollbar-wrapper {
+<style lang="scss" scoped>
+.el-scrollbar {
+	// height: 100%;
+
+  .el-scrollbar__wrap {
     overflow-x: hidden !important;
   }
+}
 </style>

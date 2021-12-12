@@ -8,8 +8,9 @@
     bottom: 0;
     z-index: 999; // 优先级高于移动环境下的遮罩层
     width: $sideBarWidth;
-    min-height: 100%;
+    height: 100%;
     background-color: #304156;
+    overflow: hidden;
     // reset elementUi style
     .el-menu {
       width: 100%;
@@ -26,9 +27,8 @@
   .main-container {  // 内容主体
     transition: margin-left .28s;
     position: relative;
-    margin-left: $sideBarWidth;
     min-height: 100%;
-    // background-color: pink;
+    margin-left: $sideBarWidth;
   }
 
   .hideSidebar {   // 收缩sidebar
@@ -36,8 +36,28 @@
       // 这里的!importan解决mobile端切换到desktop端过程中的从210px到54px
       width: 54px !important;
     }
+
     .main-container {
       margin-left: 54px;
+    }
+
+    .el-menu-item,
+    .el-submenu {
+      
+      .menu-title {
+        display: none;
+      }
+    }
+    .el-submenu > .el-submenu .el-icon-arrow-right { // 去除多级标签栏右侧箭头
+      display: none;
+    }
+
+    .el-menu-item [class^='el-icon-'] {
+      text-align: left !important;
+    }
+
+    .el-submenu [class^='el-icon-'] {
+      text-align: left !important;
     }
   }
  // 移动自适应

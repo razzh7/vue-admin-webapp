@@ -1,10 +1,10 @@
 <template>
-  <div>我是路由测试模块</div>
+  <div>but you can never back</div>
 </template>
 
 <script>
 export default {
-  name: 'Test'
+
 }
 </script>
 

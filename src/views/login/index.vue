@@ -24,7 +24,7 @@
         </el-form-item>
         <div class="item-button">
           <el-button type="primary" @click="Login">登录</el-button>
-          <el-button type="info" @click="reset">重置</el-button>
+          <el-button type="info">重置</el-button>
         </div>
       </el-form>
     </div>
@@ -37,8 +37,8 @@ export default {
   data() {
     return {
       loginInfo: { // 用户名和密码
-        user: '',
-        password: ''
+        user: 'admin',
+        password: '123123'
       },
       rules: { // 表单验证
         user: [

@@ -16,7 +16,6 @@ const path = require('path');
  */
 const files = require.context('./modules', false, /\.js$/);
 let modules = {};
-console.log(files.keys())
 files.keys().forEach(key => {
   let name = path.basename(key, '.js') // 去掉.js只拿路径 例: user.js -> user
   modules[name] = files(key).default || files(key)
@@ -26,6 +25,5 @@ const store = new Vuex.Store({
   modules,
   getters
 })
-console.log('store',store)
 
 export default store;

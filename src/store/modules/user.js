@@ -1,6 +1,8 @@
 import { login } from "@/api/login"
 import { userInfo } from "@/api/userInfo"
 import { Message } from "element-ui"
+import { resetRouter } from "@/router"
+
 const state = {
   token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
   userInfo: '',
@@ -18,6 +20,13 @@ const mutations = {
   },
   SET_ROLES(state, roles) {
     state.roles = roles
+  },
+  REMOVE_TOKEN(state) {
+    state.token = ''
+    localStorage.removeItem('token')
+  },
+  REMOVE_ROLES(state) {
+    state.roles = []
   }
 }
 
@@ -39,7 +48,7 @@ const actions = {
         })
     })
   },
-  _userInfo({ commit,state }) {
+  _userInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       userInfo({ token: state.token }).then(res => {
         if (res.code === 0) {
@@ -51,6 +60,15 @@ const actions = {
       }).catch(err => {
         reject(err)
       })
+    })
+  },
+  _loginOut({ commit }) {
+    return new Promise(resolve => {
+      commit('REMOVE_TOKEN')
+      commit('REMOVE_ROLES')
+      resetRouter() // 重置路由
+      console.log('action这边执行了吗')
+      resolve()
     })
   }
 }
