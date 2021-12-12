@@ -1,5 +1,4 @@
 import { commonRoutes,asyncRoutes } from "@/router"
-// import { asyncRoutes } from "@/router/modules/routes"
 
 const state = {
   routes: [],
