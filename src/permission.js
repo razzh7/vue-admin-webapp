@@ -19,16 +19,14 @@ router.beforeEach(async (to, from, next) => {
     const hasToken = getToken()
     if (hasToken) {
       const hasRoles = store.getters.roles.length > 0
-      console.log('hasToken')
+
       if (hasRoles) {
-        console.log('hasRoles')
         next()
       } else {
         try {
             const { roles } = await store.dispatch('user/_userInfo', localStorage.getItem('token'))   
             const accessRoutes = await store.dispatch('permission/generatorRoutes', roles)
 
-            console.log('通过的路由', accessRoutes)
             for(let i = 0; i < accessRoutes.length; i++) {
               let element = accessRoutes[i]
               router.addRoute(element)

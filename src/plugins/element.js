@@ -14,7 +14,9 @@ import {
   Alert,
   Dropdown,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Breadcrumb,
+  BreadcrumbItem 
 } from "element-ui";
 
 Vue.use(Form)
@@ -32,3 +34,5 @@ Vue.use(Alert)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)

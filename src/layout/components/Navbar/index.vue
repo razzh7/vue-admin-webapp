@@ -1,11 +1,9 @@
 <template>
   <div class="navbar">
     <hamburger @toggleClick="toggleClick" :is-active="sidebar.opened" />
+    <breadcrumb />
     <div class="right-menu">
       <el-dropdown class="dropdown hover-effect" trigger="click" @command="handleCommand">
-        <!-- <span class="el-dropdown-link">
-          下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-        </span> -->
         <div class="avatar-container">
           <img class="avatar" :src="avatar">
           <i class="el-icon-caret-bottom el-icon--right"></i>
@@ -20,10 +18,13 @@
 
 <script>
 import Hamburger from "@/components/Hamburger"
+import Breadcrumb from "@/components/Breadcrumb"
 import { mapGetters } from "vuex"
+
 export default {
   components: {
     Hamburger,
+    Breadcrumb
   },
   computed: {
     ...mapGetters(['sidebar', 'avatar']),
