@@ -14,6 +14,11 @@ export const commonRoutes = [
     hidden: true
   },
   {
+    path: '/404',
+    component: () => import('@/views/error/404.vue'),
+    hidden: true
+  },
+  {
     path: '/',
     name: 'Home',
     component: Layout,
@@ -124,7 +129,8 @@ export const asyncRoutes = [
         meta: { title: '权限分配', icon: 'el-icon-lock', roles: ['admin'] }
       }
     ]
-  }
+  },
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => {
@@ -136,7 +142,6 @@ const router = createRouter()
 
 // fix:用户切换菜单栏不变的问题： https://github.com/vuejs/vue-router/issues/1234
 export function resetRouter() {
-  console.log('执行了吗')
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // the relevant part
 }
