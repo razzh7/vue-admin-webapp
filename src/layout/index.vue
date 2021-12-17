@@ -3,14 +3,17 @@
     <div :class="{ 'drawer-bg': sidebar.opened && classObj.mobile }" @click="toggleSidebar"></div>
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <navbar />
+      <div class="nav-header">
+        <navbar />
+        <view-tags />
+      </div>
       <page-main />
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, PageMain } from "./components"
+import { Navbar, Sidebar, PageMain, ViewTags } from "./components"
 import { mapGetters } from "vuex"
 import ResizeMixins from "./mixin/ResizeHandler"
 
@@ -19,7 +22,8 @@ export default {
   components: {
     Navbar,
     Sidebar,
-    PageMain
+    PageMain,
+    ViewTags
   },
   mixins: [ResizeMixins],
   computed: {

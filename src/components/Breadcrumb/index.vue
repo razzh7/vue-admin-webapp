@@ -42,7 +42,6 @@ export default {
     },
     handleLink(item) {
       const { path } = item
-      console.log('我是path',path)
       this.$router.push(path).catch(()=>{})
     }
   }

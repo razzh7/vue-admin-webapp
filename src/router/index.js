@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import { asyncRoutes } from "./modules/routes" // 动态路由必须导入
 Vue.use(Router)
 import Layout from '@/layout'
 
@@ -28,7 +27,7 @@ export const commonRoutes = [
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard'),
-        meta: { title: '首页', icon: 'el-icon-s-home' }
+        meta: { title: '首页', icon: 'el-icon-s-home', affix: true }
       }
     ]
   },
