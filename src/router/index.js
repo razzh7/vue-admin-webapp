@@ -3,6 +3,10 @@ import Router from 'vue-router'
 Vue.use(Router)
 import Layout from '@/layout'
 
+/**
+ * hidden: Boolean,不显示在菜单栏
+ * affix: Boolean,tag固定在导航栏,首页默认固定
+ */
 /* 通用路由 */
 export const commonRoutes = [
   {
@@ -39,7 +43,7 @@ export const commonRoutes = [
         path: 'index',
         name: 'Test',
         component: () => import('@/views/routertest'),
-        meta: { title: '测试1', icon: 'el-icon-s-promotion' }
+        meta: { title: '测试1', icon: 'el-icon-s-promotion', affix: true }
       }
     ]
   },

@@ -8,7 +8,7 @@
     class="view-tags-item"
     :class="isActive(tag)?'active':''">
       {{ tag.title }}
-      <span class="el-icon-close" v-if="tag.path !== '/dashboard'" @click.stop="romveTag(tag)"></span>
+      <span class="el-icon-close" v-if="tag.meta && !tag.meta.affix" @click.stop="romveTag(tag)"></span>
       <!-- stop 禁止冒泡关闭按钮的冒泡事件,从而冒泡到router-link触发addTags -->
     </router-link>
   </div>
@@ -49,6 +49,7 @@ export default {
     romveTag(tag) { // 删除某项tags
     console.log('I am tag',tag)
       this.$store.dispatch('viewtags/removeTag', tag)
+      this.updateViews()
     },
     initTags() { // 初始化路由
       const routes = this.routes
@@ -60,7 +61,7 @@ export default {
         }
       })
     },
-    filterTags(routes, basePath='/') {
+    filterTags(routes, basePath='/') { // affix function 筛选meta:{ affix: true }
       let tags = []
       routes.forEach(r => {
         if (r.meta && r.meta.affix) {
@@ -80,6 +81,11 @@ export default {
       })
 
       return tags
+    },
+    updateViews() { // 点击关闭tag后路由跳转
+      const tag = this.view_tags;
+      const lastTag = tag[tag.length - 1]
+      this.$router.push({ path: lastTag.path }).catch(()=>{})
     }
   }
 }
