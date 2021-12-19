@@ -6,11 +6,17 @@
     :to="{path: tag.path }"
     tag="span"
     class="view-tags-item"
-    :class="isActive(tag)?'active':''">
+    :class="isActive(tag)?'active':''"
+    @contextmenu.prevent.native="openMenu(tag,$event)">
       {{ tag.title }}
-      <span class="el-icon-close" v-if="tag.meta && !tag.meta.affix" @click.stop="romveTag(tag)"></span>
       <!-- stop 禁止冒泡关闭按钮的冒泡事件,从而冒泡到router-link触发addTags -->
+      <span class="el-icon-close" v-if="tag.meta && !tag.meta.affix" @click.stop="closeCurTag(tag)"></span>
     </router-link>
+    <ul v-show="visible" class="nav-menu" :style="{top: tTop + 'px', left: tLeft + 'px'}">
+      <li @click="closeCurTag(selectTag)">关闭标签</li>
+      <li @click="closeOther(selectTag)">关闭其他标签</li>
+      <li @click="closeAll">关闭所有标签</li>
+    </ul>
   </div>
 </template>
 
@@ -18,12 +24,28 @@
 import { mapGetters } from 'vuex'
 import path from 'path'
 export default {
+  data() {
+    return {
+      visible: false,
+      tLeft: 0,
+      tTop: 0,
+      selectTag: {}
+    }
+  },
   watch: {
     $route() {
       this.addTags()
+    },
+    visible(value) {
+      if (value) {
+        document.body.addEventListener('click', this.closeMenu)
+      } else {
+        document.body.removeEventListener('click', this.closeMenu)
+      }
     }
   },
   mounted() {
+    console.log('this',this)
     this.initTags()
     this.addTags()
   },
@@ -37,17 +59,13 @@ export default {
     }
   },
   methods: {
-    href(tag) {
-      return tag.path
-    },
     addTags() { // 添加tags
       this.$store.dispatch('viewtags/addTags', this.$route)
     },
     isActive(route) { // 选择激活tags
       return route.path === this.$route.path
     },
-    romveTag(tag) { // 删除某项tags
-    console.log('I am tag',tag)
+    closeCurTag(tag) { // 关闭当前标签
       this.$store.dispatch('viewtags/removeTag', tag)
       this.updateViews()
     },
@@ -86,6 +104,26 @@ export default {
       const tag = this.view_tags;
       const lastTag = tag[tag.length - 1]
       this.$router.push({ path: lastTag.path }).catch(()=>{})
+    },
+    openMenu(tag, e) { // 打开菜单
+      console.log(e)
+      const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
+      const tLeft = e.clientX - offsetLeft + 15 // viewport left
+      const tTop = e.clientY // viewport position
+
+      this.visible = true
+      this.tLeft = tLeft
+      this.tTop = tTop
+      this.selectTag = tag
+    },
+    closeMenu() {
+      this.visible = false
+    },
+    closeOther(tag) {
+      this.$store.dispatch('viewtags/closeOther', tag)
+    },
+    closeAll() {
+      this.$store.dispatch('viewtags/enptyTag')
     }
   }
 }
@@ -153,6 +191,27 @@ export default {
         display: inline-block;
         transform: scale(.6);
       }
+    }
+  }
+
+  .nav-menu {
+    position: absolute;
+    z-index: 1999;
+    padding: 5px 0;
+    border-radius: 4px;
+    color: #333;
+    list-style-type: none;
+    background-color: #fff;
+    box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 30%);
+
+    &>li {
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: center;
+    }
+    &>li:hover {
+      background-color: #EBEBEB;
     }
   }
 }

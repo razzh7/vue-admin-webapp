@@ -8,17 +8,23 @@ const mutations = {
     if(state.tagsList.some(t => t.title === title)) return /**防止标签切换时重复渲染 */
     state.tagsList.push(Object.assign({}, views, { title }))
   },
-  EMPTY_TAGS(state) {
-    state.tagsList.map((t,i) => {
-      if(t.path === '/dashboard') return
-      state.tagsList.splice(i,1)
+  REMOVE_TAG(state, tag) {
+    const list = state.tagsList
+    for(let i = 0; i < list.length; i++) {
+      if (list[i].path === tag.path) {
+        list.splice(i,1)
+      }
+    }
+    state.tagsList = list
+  },
+  CLOSE_OTHER(state, tag) {
+    state.tagsList = state.tagsList.filter(r => {
+      return r.path === tag.path || r.meta.affix
     })
   },
-  REMOVE_TAG(state, route) {
-    state.tagsList.map((t,i) => {
-      if(t.path === route.path) {
-        state.tagsList.splice(i,1)
-      }
+  EMPTY_TAG(state) {
+    state.tagsList = state.tagsList.filter(r => {
+      return r.meta && r.meta.affix
     })
   }
 }
@@ -27,11 +33,14 @@ const actions = {
   addTags({ commit }, views) {
     commit('ADD_TAGS', views)
   },
-  emptyTags({ commit }) {
-    commit('EMPTY_TAGS')
+  removeTag({ commit }, tag) {
+    commit('REMOVE_TAG', tag)
   },
-  removeTag({ commit }, route) {
-    commit('REMOVE_TAG', route)
+  closeOther({ commit }, tag) {
+    commit('CLOSE_OTHER',tag)
+  },
+  enptyTag({ commit }) {
+    commit('EMPTY_TAG')
   }
 }
 
