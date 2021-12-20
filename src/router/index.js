@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 import Layout from '@/layout'
-
+import nestedModule from './modules/nested'
 /**
  * hidden: Boolean,不显示在菜单栏
  * affix: Boolean,tag固定在导航栏,首页默认固定
@@ -43,60 +43,11 @@ export const commonRoutes = [
         path: 'index',
         name: 'Test',
         component: () => import('@/views/routertest'),
-        meta: { title: '测试1', icon: 'el-icon-s-promotion', affix: true }
+        meta: { title: '测试单元', icon: 'el-icon-s-promotion', affix: true }
       }
     ]
   },
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1/menu1-1',
-    meta: { title: '多级菜单测试', icon: 'el-icon-s-claim' },
-    children: [
-      {
-        path: 'menu1',
-        name: 'Menu1',
-        redirect: '/nested/menu1/menu1-2',
-        component: () => import('@/views/nested/menu1'),
-        meta: { title: 'Menu1', icon: 'el-icon-s-marketing' },
-        children: [
-          {
-            path: 'menu1-1',
-            name: 'Menu1-1',
-            redirect: '/nested/menu1/menu1-1/menu1-1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            meta: { title: 'Menu1-1', icon: 'el-icon-s-flag' },
-            children: [
-              {
-                path: 'menu1-1-1',
-                name: 'Menu1-1-1',
-                component: () => import('@/views/nested/menu1/menu1-1/menu1-1-1'),
-                meta: { title: 'Menu1-1-1', icon:'el-icon-s-claim' }
-              },
-              {
-                path: 'menu1-1-2',
-                name: 'Menu1-1-2',
-                component: () => import('@/views/nested/menu1/menu1-1/menu1-1-2'),
-                meta: { title: 'Menu1-1-2', icon:'el-icon-s-claim' }
-              }
-            ]         
-          },
-          {
-            path: 'menu1-2',
-            name: 'Menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            meta: { title: 'Menu1-2', icon: 'el-icon-s-order' }           
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        name: 'Menu2',
-        component: () => import('@/views/nested/menu2'),
-        meta: { title: 'Menu2', icon: 'el-icon-s-ticket' }
-      }
-    ]
-  },
+  nestedModule,
   {
     path: '/github', // path中不加/相当于父组件路径/https://github.com/rzhAvenir
     component: Layout,

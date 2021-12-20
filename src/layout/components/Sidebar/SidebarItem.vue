@@ -10,7 +10,7 @@
         </el-menu-item>
       </page-link>
     </template>
-    <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
+    <el-submenu v-else class="nested-menu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title" v-if="item.meta && !item.hidden">
         <i :class="item.meta.icon"></i>
         <span class="menu-title">{{ item.meta.title }}</span>

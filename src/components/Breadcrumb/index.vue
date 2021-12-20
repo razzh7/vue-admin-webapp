@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     getNavList() {
-      console.log(this.$route)
       if(this.isDashboard(this.$route.path)) {
         this.navList = this.$route.matched.filter(item => item.meta && item.meta.title)
         return

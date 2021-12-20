@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-scrollbar class="scrollbar-wrapper">
+      <logo />
       <el-menu
         :default-active="this.$route.path"
         :background-color="variables.menuBg"
@@ -20,10 +21,11 @@
 <script>
 import { mapGetters } from "vuex"
 import SidebarItem from "./SidebarItem"
+import Logo from "./Logo.vue"
 import variables from "@/styles/variables.scss"
 
 export default {
-  components: { SidebarItem },
+  components: { SidebarItem, Logo },
   computed: {
     ...mapGetters(['sidebar', 'permission_routes']),
     isCollapse() {
@@ -41,7 +43,6 @@ export default {
 
 <style lang="scss" scoped>
 .el-scrollbar {
-	// height: 100%;
 
   .el-scrollbar__wrap {
     overflow-x: hidden !important;

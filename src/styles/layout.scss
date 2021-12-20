@@ -9,21 +9,47 @@
     z-index: 999; // 优先级高于移动环境下的遮罩层
     width: $sideBarWidth;
     height: 100%;
-    background-color: #304156;
+    background-color: #021423;
     overflow: hidden;
-    // reset elementUi style
+    // reset elementUI style
     .el-menu {
       width: 100%;
       border: none;
-    }
-    // .el-submenu__title {
-    //   padding: 0 !important;
-    // }
-    // .el-tooltip {
-    //   padding:  0 !important;
-    // }
-  }
 
+      .el-menu-item {
+        &:hover {
+          background-color: transparent !important;
+        }
+        &.is-active {
+          background-color: #0D2B2C !important;
+        }
+        &:hover [class^=el-icon] {
+          color: #36ad6a !important;
+        }
+        &:hover .menu-title {
+          color: #36ad6a !important;
+        }
+    }
+      .el-submenu {
+        &.is-active>.el-submenu__title {
+          color: $subMenuActiveText !important;
+          [class^=el-icon] {
+            color: #36ad6a !important;
+          }
+          .el-icon-arrow-down {
+            color: #36ad6a !important;
+          }
+        }
+        .el-submenu__title:hover {
+          background-color: transparent !important;
+        }
+      }
+  }
+  // .is-active>.el-submenu__title {
+  //   color: $subMenuActiveText !important;
+  // }
+  
+  }
   .main-container {  // 内容主体
     transition: margin-left .28s;
     position: relative;
@@ -84,5 +110,4 @@
       transition: none;
     }
   }
-
 }

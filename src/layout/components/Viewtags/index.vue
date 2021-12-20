@@ -4,13 +4,17 @@
     v-for="tag in viewTags"
     :key="tag.path"
     :to="{path: tag.path }"
-    tag="span"
+    custom
+    v-slot="{ navigate }"
     class="view-tags-item"
     :class="isActive(tag)?'active':''"
     @contextmenu.prevent.native="openMenu(tag,$event)">
-      {{ tag.title }}
+      <!-- {{ tag.title }} -->
+      <span @click="navigate">
+        {{ tag.title }}
       <!-- stop 禁止冒泡关闭按钮的冒泡事件,从而冒泡到router-link触发addTags -->
-      <span class="el-icon-close" v-if="tag.meta && !tag.meta.affix" @click.stop="closeCurTag(tag)"></span>
+        <span class="el-icon-close" v-if="tag.meta && !tag.meta.affix" @click.stop="closeCurTag(tag)"></span>
+      </span>
     </router-link>
     <ul v-show="visible" class="nav-menu" :style="{top: tTop + 'px', left: tLeft + 'px'}">
       <li @click="closeCurTag(selectTag)">关闭标签</li>
@@ -45,7 +49,6 @@ export default {
     }
   },
   mounted() {
-    console.log('this',this)
     this.initTags()
     this.addTags()
   },
@@ -106,7 +109,6 @@ export default {
       this.$router.push({ path: lastTag.path }).catch(()=>{})
     },
     openMenu(tag, e) { // 打开菜单
-      console.log(e)
       const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
       const tLeft = e.clientX - offsetLeft + 15 // viewport left
       const tTop = e.clientY // viewport position

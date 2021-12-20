@@ -67,7 +67,6 @@ const actions = {
       commit('REMOVE_TOKEN')
       commit('REMOVE_ROLES')
       resetRouter() // 重置路由
-      console.log('action这边执行了吗')
       resolve()
     })
   }
