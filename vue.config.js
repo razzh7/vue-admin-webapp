@@ -3,7 +3,7 @@ const resolve = function(dir) {
   return path.join(__dirname, dir);
 }
 module.exports = {
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-admin-webapp/' : '/',
   outputDir: 'dist',
   assetsDir: 'static',
   chainWebpack: config => {
