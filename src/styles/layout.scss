@@ -24,20 +24,20 @@
           background-color: #0D2B2C !important;
         }
         &:hover [class^=el-icon] {
-          color: #36ad6a !important;
+          color: $menuActiveText !important;
         }
         &:hover .menu-title {
-          color: #36ad6a !important;
+          color: $menuActiveText !important;
         }
     }
       .el-submenu {
         &.is-active>.el-submenu__title {
           color: $subMenuActiveText !important;
           [class^=el-icon] {
-            color: #36ad6a !important;
+            color: $subMenuActiveText !important;
           }
           .el-icon-arrow-down {
-            color: #36ad6a !important;
+            color: $subMenuActiveText !important;
           }
         }
         .el-submenu__title:hover {
@@ -45,9 +45,6 @@
         }
       }
   }
-  // .is-active>.el-submenu__title {
-  //   color: $subMenuActiveText !important;
-  // }
   
   }
   .main-container {  // 内容主体
