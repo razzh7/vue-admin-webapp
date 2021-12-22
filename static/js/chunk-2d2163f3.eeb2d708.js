@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d2163f3"],{c23a:function(n,e,c){"use strict";c.r(e);var t=function(){var n=this,e=n.$createElement,c=n._self._c||e;return c("div",[n._v(" 我是权限管理页面 ")])},u=[],a={},l=a,r=c("cba8"),s=Object(r["a"])(l,t,u,!1,null,null,null);e["default"]=s.exports}}]);
+//# sourceMappingURL=chunk-2d2163f3.eeb2d708.js.map
