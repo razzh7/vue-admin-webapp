@@ -51,7 +51,6 @@ export default {
 .breadcrumb {
   float: left;
   height: 50px;
-  
   .el-breadcrumb {
     height: 100%;
     line-height: 50px;

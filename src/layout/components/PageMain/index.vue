@@ -15,7 +15,9 @@ export default {
 
 <style lang="scss" scoped>
 .page-main {
+  position: relative;
   min-height: calc(100vh - 84px);
+  width: 100%;
   overflow: hidden; // 解决动画transfrom: translateX(-xx) 导致浏览器出现上下滚动条
 }
 </style>

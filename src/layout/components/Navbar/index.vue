@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <hamburger @toggleClick="toggleClick" :is-active="sidebar.opened" />
-    <breadcrumb />
+    <breadcrumb class="breadcrumb-container"/>
     <div class="right-menu">
       <el-dropdown class="dropdown hover-effect" trigger="click" @command="handleCommand">
         <div class="avatar-container">
@@ -53,7 +53,9 @@ export default {
   height: 50px;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  
+  .breadcrumb-container {
+    // overflow: hidden;
+  } 
   .right-menu {
     float: right;
     height: 50px;
