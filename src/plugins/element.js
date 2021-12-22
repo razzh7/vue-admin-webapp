@@ -20,7 +20,8 @@ import {
   Table,
   TableColumn,
   Dialog,
-  Tag
+  Tag,
+  Message
 } from "element-ui";
 
 Vue.use(Form)
@@ -44,3 +45,6 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Tag)
 Vue.use(Dialog)
+
+// message不需要使用Vue.use 否则刷新页面会自动弹窗
+Vue.prototype.$message = Message;

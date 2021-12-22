@@ -41,7 +41,7 @@ export default {
     loginOut() {
       this.$store.dispatch('user/_loginOut').then(() => {
         this.$router.push({ path: '/login', query: { redirect: this.$route.fullPath }})
-        this.$store.dispatch('viewtags/emptyTags')
+        this.$store.dispatch('viewtags/enptyTag')
       })
     }
   }

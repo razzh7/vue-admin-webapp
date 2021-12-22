@@ -40,6 +40,7 @@ const actions = {
           commit('SET_TOKEN', data.user.token)
           resolve(res)
         } else {
+          // Message.error(res.data.user.msg)
           reject(res)
         }
       })

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h2>自定义列表</h2>
     <e-table :data="fastData" :columns="columns" border stripe @filter-change="filterChange"></e-table>
     <el-dialog
       title="提示"

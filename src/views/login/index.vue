@@ -1,32 +1,28 @@
 <template>
-  <div id="login">
-    <div class="login-container">
-      <i class="avator"></i>
-      <el-form
-        class="login-form"
-        label-width="80px"
-        :model="loginInfo"
-        :rules="rules"
-      >
-        <el-form-item label="账号" prop="user">
-          <el-input
-            prefix-icon="el-icon-s-custom"
-            v-model="loginInfo.user"
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input
-            prefix-icon="el-icon-lock"
-            type="password"
-            v-model="loginInfo.password"
-            @keyup.enter.native="Login"
-          ></el-input>
-        </el-form-item>
-        <div class="item-button">
-          <el-button type="primary" @click="Login">登录</el-button>
-          <el-button type="info">重置</el-button>
-        </div>
-      </el-form>
+  <div class="login">
+    <div class="login-form">
+      <div class="r-title">
+        <img class="logo" src="../../assets/logo/logo.png" alt="Vue Admin Logo">
+        <span>Vue Admin WebApp</span>
+      </div>
+        <el-form :model="loginInfo" :rules="rules" ref="ruleForm">
+          <el-form-item prop="user"> 
+            <el-input
+              v-model="loginInfo.user"
+              prefix-icon="el-icon-user">
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input
+              v-model="loginInfo.password"
+              prefix-icon="el-icon-lock"
+              type="password">
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submit">登录</el-button>
+          </el-form-item>
+        </el-form>
     </div>
   </div>
 </template>
@@ -50,17 +46,20 @@ export default {
           {min: 3, max: 8, message: '密码长度在3到8个字符', trigger: 'blur'}
         ]
       }
-
     }
   },
   methods: {
-    Login() {
-      this.$store.dispatch('user/_login',this.loginInfo).then(res => {
-        if (res.code === 0 ) {
-          this.$router.push({ path:this.$route.query.redirect }).catch((e) => e)
+    submit() {
+      this.$refs['ruleForm'].validate((valid) => {
+        if (valid) {
+          this.$store.dispatch('user/_login',this.loginInfo).then(res => {
+            if (res.code === 0 ) {
+              this.$router.push({ path:this.$route.query.redirect }).catch((e) => e)
+            }
+          })
+        } else {
+          return
         }
-      }).catch(err => {
-        console.log(err)
       })
     }
   }
@@ -68,34 +67,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#login {
-  height: 100vh;
-  background: #409eff;
-}
-.login-container {
-  width: 700px;
-  height: 400px;
-  background: #fff;
+.login {
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 20px;
-  .avator {
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    background: url("https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png") no-repeat;
-    background-size: 100% 100%;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-  }
+  height: 100%;
+  background: url("../../assets/login/login.jpeg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
   .login-form {
-    .item-button {
-      text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 300px;
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    // background-color: rgb(136, 45, 45);
+
+    .r-title {
+      margin-bottom: 10px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+
+      .logo {
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+      }
     }
+
   }
+}
+</style>
+
+<style lang="scss" scoped>
+// reset Element UI
+.el-form-item {
+  width: 400px;
+  margin: 20px auto;
+}
+.el-button {
+  width: 100%;
 }
 </style>
