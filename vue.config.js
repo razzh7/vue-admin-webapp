@@ -4,6 +4,8 @@ const resolve = function(dir) {
 }
 module.exports = {
   publicPath: '/',
+  outputDir: 'dist',
+  assetsDir: 'static',
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))
