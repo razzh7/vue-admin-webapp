@@ -16,7 +16,11 @@ import {
   DropdownMenu,
   DropdownItem,
   Breadcrumb,
-  BreadcrumbItem 
+  BreadcrumbItem,
+  Table,
+  TableColumn,
+  Dialog,
+  Tag
 } from "element-ui";
 
 Vue.use(Form)
@@ -36,3 +40,7 @@ Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Tag)
+Vue.use(Dialog)
