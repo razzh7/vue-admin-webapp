@@ -59,7 +59,7 @@ export default {
   .right-menu {
     float: right;
     height: 50px;
-    padding: 0 30px;
+    margin-right: 30px;
 
     .dropdown {
       position: relative;
