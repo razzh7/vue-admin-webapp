@@ -43,7 +43,7 @@ export default {
 
 <style lang="scss" scoped>
 .el-scrollbar {
-
+  height: 100vh;
   .el-scrollbar__wrap {
     overflow-x: hidden !important;
   }

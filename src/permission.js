@@ -24,7 +24,7 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         try {
-            const { roles } = await store.dispatch('user/_userInfo', localStorage.getItem('token'))   
+            const { roles } = await store.dispatch('user/_userInfo', localStorage.getItem('token')) 
             const accessRoutes = await store.dispatch('permission/generatorRoutes', roles)
 
             for(let i = 0; i < accessRoutes.length; i++) {
@@ -36,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
         } catch(error) {
           console.log(error)
         }
-        }
+      }
     } else {
       next({
         path: '/login',
