@@ -40,12 +40,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.el-scrollbar {
-  height: 110vh;
-  .el-scrollbar__wrap {
-    overflow-x: hidden !important;
-  }
-}
-</style>

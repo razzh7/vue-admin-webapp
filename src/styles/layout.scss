@@ -12,6 +12,17 @@
     background-color: #021423;
     overflow: hidden;
     // reset elementUI style
+    .scrollbar-wrapper {
+      overflow-x: hidden !important;
+    }
+
+    .el-scrollbar__bar.is-vertical {
+      right: 0px;
+    }
+
+    .el-scrollbar {
+      height: 100%; // 修复菜单栏不能滚动问题
+    }
     .el-menu {
       width: 100%;
       border: none;
