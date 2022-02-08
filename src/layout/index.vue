@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper" :class="classObj">
     <div :class="{ 'drawer-bg': sidebar.opened && classObj.mobile }" @click="toggleSidebar"></div>
-    <sidebar class="sidebar-container" />
+    <sidebar class="sidebar-container" :class="{'arrow': classObj.hideSidebar}"/>
     <div class="main-container">
       <div class="nav-header">
         <navbar />
@@ -11,7 +11,7 @@
     </div>
   </div>
 </template>
-
+<!--  -->
 <script>
 import { Navbar, Sidebar, PageMain, ViewTags } from "./components"
 import { mapGetters } from "vuex"
@@ -59,5 +59,11 @@ export default {
   height: 100%;
   position: absolute;
   z-index: 998;
+}
+.arrow { // 关闭菜单栏的时候隐藏箭头
+  .el-submenu__icon-arrow,
+  .el-icon-arrow-down {
+    display: none;
+  }
 }
 </style>
