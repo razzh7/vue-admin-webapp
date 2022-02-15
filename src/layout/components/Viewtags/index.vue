@@ -1,6 +1,8 @@
 <template>
   <div class="view-tags">
+    <mouse-scroll class="scroll-container" :vertical="false">
     <router-link
+    ref="tag"
     v-for="tag in viewTags"
     :key="tag.path"
     :to="{path: tag.path }"
@@ -16,6 +18,7 @@
         <span class="el-icon-close" v-if="tag.meta && !tag.meta.affix" @click.stop="closeCurTag(tag)"></span>
       </span>
     </router-link>
+    </mouse-scroll>
     <ul v-show="visible" class="nav-menu" :style="{top: tTop + 'px', left: tLeft + 'px'}">
       <li @click="closeCurTag(selectTag)">关闭标签</li>
       <li @click="closeOther(selectTag)">关闭其他标签</li>
@@ -26,6 +29,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import MouseScroll from './scroll.vue'
 import path from 'path'
 export default {
   data() {
@@ -37,7 +41,7 @@ export default {
     }
   },
   watch: {
-    $route() {
+    $route(route) {
       this.addTags()
     },
     visible(value) {
@@ -104,9 +108,15 @@ export default {
       return tags
     },
     updateViews() { // 点击关闭tag后路由跳转
-      const tag = this.view_tags;
-      const lastTag = tag[tag.length - 1]
-      this.$router.push({ path: lastTag.path }).catch(()=>{})
+      const tags = this.$refs.tag
+      this.$nextTick(() => {
+        for(const tag of tags ) {
+          if(tag.to.path === this.$route.path) {
+            console.log(1)
+            this.$router.push({ path: tag.to.path }).catch(() => {})
+          }
+        }
+      })
     },
     openMenu(tag, e) { // 打开菜单
       const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
@@ -127,6 +137,9 @@ export default {
     closeAll() {
       this.$store.dispatch('viewtags/enptyTag')
     }
+  },
+  components: {
+    MouseScroll
   }
 }
 </script>
@@ -138,7 +151,6 @@ export default {
   background: #fff;
   border-bottom: 1px solid #d8dce5;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
-
   .view-tags-item {
     display: inline-block;
     box-sizing: border-box;
