@@ -26,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
         try {
             const { roles } = await store.dispatch('user/_userInfo', localStorage.getItem('token')) 
             const accessRoutes = await store.dispatch('permission/generatorRoutes', roles)
-
+            console.log('我是roles', accessRoutes)
             for(let i = 0; i < accessRoutes.length; i++) {
               let element = accessRoutes[i]
               router.addRoute(element)
