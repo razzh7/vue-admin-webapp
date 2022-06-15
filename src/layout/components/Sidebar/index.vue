@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-scrollbar class="scrollbar-wrapper">
-      <logo />
+    <logo :collapse="isCollapse" />
+    <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="this.$route.path"
         :background-color="variables.menuBg"
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-import SidebarItem from "./SidebarItem"
-import Logo from "./Logo.vue"
-import variables from "@/styles/variables.scss"
+import { mapGetters } from 'vuex'
+import SidebarItem from './SidebarItem'
+import Logo from './Logo.vue'
+import variables from '@/styles/variables.scss'
 
 export default {
   components: { SidebarItem, Logo },
@@ -36,7 +36,7 @@ export default {
     // },
     variables() {
       return variables
-    }
-  }
-};
+    },
+  },
+}
 </script>
