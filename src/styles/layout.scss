@@ -23,6 +23,13 @@
     .el-scrollbar {
       height: 100%; // 修复菜单栏不能滚动问题
     }
+
+    &.has-logo {
+      .el-scrollbar {
+        height: calc(100% - 50px);
+      }
+    }
+    
     .el-menu {
       width: 100%;
       border: none;

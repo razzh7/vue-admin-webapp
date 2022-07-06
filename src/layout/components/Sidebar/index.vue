@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{'has-logo': showLogo }">
     <logo :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -27,7 +27,7 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters(['sidebar', 'permission_routes']),
+    ...mapGetters(['sidebar', 'showLogo', 'permission_routes']),
     isCollapse() {
       return !this.sidebar.opened
     },

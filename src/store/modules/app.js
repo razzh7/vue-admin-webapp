@@ -1,7 +1,8 @@
 const state = {
   sidebar: {
     opened: localStorage.getItem('opened') ? !!+localStorage.getItem('opened') : true, // !!转化数字为布尔值(首次没有local值使用true意思更加符合open的意思)
-    withoutAnimation: false
+    withoutAnimation: false,
+    showLogo: true,
   },
   device: 'desktop'
 }
