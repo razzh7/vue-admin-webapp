@@ -22,7 +22,9 @@
     "file-save": "^0.2.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo": "^2.8.0"
   },
   "browserslist": [
     "> 1%",
