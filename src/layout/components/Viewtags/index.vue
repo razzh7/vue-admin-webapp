@@ -172,7 +172,7 @@ export default {
 
 <style lang="scss" scoped>
 .view-tags {
-  height: 34px;
+  height: 33px;
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #d8dce5;
