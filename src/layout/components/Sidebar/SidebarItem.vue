@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-item">
-    <template v-if="isOnlyChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowChildren)">
+    <template v-if="isOnlyChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowChildren) && !item.alwaysShow">
       <!-- page-link的作用在于区分外链和内部path -->
       <!-- 详见路由文件中的Github -->
       <page-link v-if="!onlyOneChild.hidden && onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
