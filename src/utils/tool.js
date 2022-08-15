@@ -1,5 +1,9 @@
 import { Message, MessageBox } from 'element-ui'
-
+/**
+ * @param {Array} mapArr
+ * @param {Number} title
+ * @param {Boolean} isMapIcon
+*/
 export const matchMap = (mapArr, val, isMapIcon = false) => {
   const mapItem = mapArr.find(item => item.dictValue == val)
   if (isMapIcon) {
@@ -22,10 +26,10 @@ export const matchMap = (mapArr, val, isMapIcon = false) => {
 }
 
 /**
- * @param {stirng} tips
- * @param {string} title
- * @param {string} type
- * @param {function} fn
+ * @param {Stirng} tips
+ * @param {String} title
+ * @param {String} type
+ * @param {Function} fn
 */
 export function comfirmBox(tips, title, type, fn) {
   if (!tips) tips = '此操作将永久删除该条数据, 是否继续?'
