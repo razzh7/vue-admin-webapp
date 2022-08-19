@@ -2,7 +2,7 @@
   <div class="breadcrumb">
     <el-breadcrumb separator="/">
       <transition-group name="breadcrumb">
-        <el-breadcrumb-item v-for="item in navList" :key="item">
+        <el-breadcrumb-item v-for="(item, index) in navList" :key="index">
           <!-- <span>{{ item.meta.title }}</span> -->
           <a @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
         </el-breadcrumb-item>
