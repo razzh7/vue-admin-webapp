@@ -2,8 +2,7 @@ import axios from 'axios';
 import Vue from 'vue';
 import Qs from 'qs';
 import store from '@/store';
-import { Loading } from 'element-ui';
-
+import { Loading, Message } from 'element-ui';
 const $axios = new axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 30000,
